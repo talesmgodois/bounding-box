@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "bounding-box"
+    }
+  },
+  "defaultProject": "bounding-box",
+  "cli": {
+    "analytics": false
+  }
 }

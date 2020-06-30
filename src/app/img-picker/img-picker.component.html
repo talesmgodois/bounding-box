@@ -1,0 +1,5 @@
+<div id="img-picker">
+    <div *ngFor="let imgUrl of imgs" >
+        <img [src]="imgUrl" (click)="selectImage(imgUrl)" />
+    </div>
+</div>

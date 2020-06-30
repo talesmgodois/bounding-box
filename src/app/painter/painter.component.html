@@ -1,0 +1,28 @@
+<main style="display: flex">
+    <div style="flex:1">
+        <section>
+            <app-toolbar (undoEvent)="undo()"
+                         (redoEvent)="redo()"
+                         redoDisabled="{{store.history.redo.length === 0}}"
+                         undoDisabled="{{store.history.undo.length === 0}}"
+                        >
+
+            </app-toolbar>
+
+            <button (click)="cleanHistory()">
+                CLEAN history
+            </button>
+        </section>
+        <section>
+            <canvas #painter id="painter"></canvas>
+        </section>
+    </div>
+    <aside style="width: 338px">
+        <app-img-picker (imgSelectEvent)="drawImg($event)"></app-img-picker>
+    </aside>
+
+</main>
+
+
+
+

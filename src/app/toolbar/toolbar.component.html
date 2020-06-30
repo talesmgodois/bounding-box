@@ -1,0 +1,14 @@
+<div>
+    <div id="controls">
+        <div class="backward item">
+            <button mat-mini-fab color="accent" aria-label="backward" (click)="undo()" [disabled]="undoDisabled">
+                <mat-icon>undo</mat-icon>
+            </button>
+        </div>
+        <div class="forward item">
+            <button mat-mini-fab color="accent" aria-label="Foward" (click)="redo()" [disabled]="redoDisabled">
+                <mat-icon>redo</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>
