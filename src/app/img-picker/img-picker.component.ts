@@ -1,5 +1,4 @@
-import { Component, Output, OnInit, EventEmitter } from '@angular/core';
-import {ApiService} from "../../services/api/api.service";
+import {Component, Output, OnInit, EventEmitter, Input} from '@angular/core';
 
 
 @Component({
@@ -7,23 +6,25 @@ import {ApiService} from "../../services/api/api.service";
   templateUrl: './img-picker.component.html',
   styleUrls: ['./img-picker.component.scss']
 })
-export class ImgPickerComponent implements OnInit {
+export class ImgPickerComponent {
+
+  @Input()
+  public imgs: Array<string> = [];
+
   @Output()
-  imgSelectEvent = new EventEmitter();
-
-  public imgs: Array<string>;
-
-  constructor(private apiService:ApiService) { }
-
-  ngOnInit(): void {
-    this.apiService.getImgs().then((data: Array<string>) => {
-      this.imgs = data;
-    });
-  }
+  public imgSelectEvent = new EventEmitter();
 
   selectImage(ev) {
-    this.imgSelectEvent.emit(ev);
+    this.imgSelectEvent.emit(ev.target);
   }
 
+  setImg(url, dataUrl){
+    const index = this.imgs.indexOf(url);
+    this.imgs[index] = dataUrl;
+  }
+
+  submit(){
+    console.log(this.imgs);
+  }
 
 }

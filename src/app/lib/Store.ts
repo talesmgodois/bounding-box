@@ -1,6 +1,6 @@
 export default class Store {
     private data;
-    public history = {
+    private history = {
         undo:[],
         redo:[]
     };
@@ -10,22 +10,39 @@ export default class Store {
     }
 
     dispatch(action:EActions, payload:any = {}): any {
-        this.history.undo.push(this.data);
-
+        const {isMouseDown} = payload;
+        const rect = {...this.data.rect, ...payload.rect};
         switch(action){
+
             case EActions.DRAW_RECT:
+                this.data ={...this.data,action,rect, isMouseDown, toDraw: false};
+                break;
             case EActions.FINISH_DRAW_RECT:
-                const {isMouseDown} = payload;
-                const rect = {...this.data.rect, ...payload.rect};
-                this.data ={...this.data,action,rect, isMouseDown};
+                this.data ={...this.data,action,rect, isMouseDown, toDraw: true};
+                break;
+            case EActions.DRAW_IMG:
+                this.data ={...this.data,action, toDraw: true, ...payload};
                 break;
             default:
-                this.data ={...this.data,action, rect, ...payload};
+                this.data ={...this.data,action, rect, ...payload, toDraw: false};
         }
+        if(this.data.toDraw) {
+            this.history.undo.push(this.data);
+            this.history.redo = [];
+        }
+        console.log(this.history)
     }
 
     get state() {
         return this.data;
+    }
+
+    get undoHistory() {
+        return this.history.undo.filter(s => s.toDraw);
+    }
+
+    get redoHistory() {
+        return this.history.redo.filter(s => s.toDraw);
     }
 
     undo() {
@@ -40,29 +57,6 @@ export default class Store {
 
 }
 
-interface RectState {
-    mouseX?:number;
-    mouseY?:number;
-    canvasX?:number;
-    canvasY?:number;
-    evX?: number;
-    evY?: number;
-    currentImg?:string;
-    isMouseDown?: boolean;
-    isDrawing?: boolean;
-    readyToDraw?: boolean;
-}
-
-interface ImgState {
-    readyToDraw?: boolean;
-    currentImg?: string;
-}
-
-interface IStore {
-    state: any;
-    history: Array<any>;
-}
-
 export enum EActions {
     DRAW_IMG = 'DRAW_IMG',
     DRAW_RECT = 'DRAW_RECT',
@@ -73,5 +67,3 @@ export enum EActions {
     CLEAR_ALL = 'CLEAR_ALL',
     START = 'START'
 }
-
-

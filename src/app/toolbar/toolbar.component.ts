@@ -21,11 +21,25 @@ export class ToolbarComponent {
   @Output()
   undoEvent = new EventEmitter();
 
+  @Output()
+  colorHandler = new EventEmitter();
+
+  public colors = [
+      'red',
+      'green',
+      'blue',
+      'black'
+  ];
+
   public undo() {
     this.undoEvent.emit(EToolbarEvents.UNDO)
   }
 
   public redo() {
     this.redoEvent.emit(EToolbarEvents.REDO)
+  }
+
+  public setColor(color) {
+    this.colorHandler.emit(color)
   }
 }

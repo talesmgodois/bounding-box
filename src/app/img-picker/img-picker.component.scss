@@ -1,5 +1,16 @@
 #img-picker {
-  div {
+  img {
     cursor: pointer;
+  }
+  div.btn-save {
+    display: flex;
+    height: 120px;
+    justify-content: center;
+    position: fixed;
+    bottom:0;
+
+    button{
+      width: 338px;
+    }
   }
 }

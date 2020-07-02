@@ -1,0 +1,18 @@
+{
+    "/imgs": {
+        "target": "https://k4px9ykgri.execute-api.us-east-2.amazonaws.com",
+        "secure": true,
+        "logLevel": "debug",
+        "changeOrigin": true,
+        "pathRewrite": {
+            "^/imgs": "prod"
+        }
+    },
+
+    "/lineup/*": {
+        "target": "https://imaging.nikon.com",
+        "secure": true,
+        "logLevel": "debug",
+        "changeOrigin": true
+    }
+}
