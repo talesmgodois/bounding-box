@@ -1,10 +1,10 @@
 <div id="img-picker">
     <div>
-        <div *ngFor="let imgUrl of imgs" >
-            <img [src]="imgUrl" (click)="selectImage($event)" />
+        <div *ngFor="let img of imgs">
+            <img [src]="getImageUrl(img)" (click)="selectImage($event, img)" width="338px" height="225px"/>
         </div>
     </div>
-    <div class="btn-save">
+    <div class="btn-save" (click)="submit($event)">
         <button mat-button>
             SUBMIT
         </button>

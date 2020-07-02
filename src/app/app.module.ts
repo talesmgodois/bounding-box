@@ -22,7 +22,7 @@ import { HttpClientModule }    from '@angular/common/http';
 
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     HttpClientModule,
     MatSliderModule,

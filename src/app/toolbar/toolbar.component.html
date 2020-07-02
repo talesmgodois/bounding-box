@@ -12,7 +12,8 @@
         </div>
 
         <div id="color-picker">
-            <span *ngFor="let color of colors" [style.background-color]="color" (click)="setColor(color)" class="color-option">
+            <span *ngFor="let color of colors" [style.background-color]="color" [style.border]="getBorder(color)"
+                  (click)="setColor(color)" class="color-option">
 
             </span>
         </div>

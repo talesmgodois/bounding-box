@@ -1,4 +1,5 @@
-import {Component, Output, OnInit, EventEmitter, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import ImgData from "../../types/ImgData";
 
 
 @Component({
@@ -9,22 +10,34 @@ import {Component, Output, OnInit, EventEmitter, Input} from '@angular/core';
 export class ImgPickerComponent {
 
   @Input()
-  public imgs: Array<string> = [];
+  public imgMap: Map<string, ImgData> = new Map();
+
+  @Input()
+  public disabledIds: Array<number>;
 
   @Output()
   public imgSelectEvent = new EventEmitter();
 
-  selectImage(ev) {
-    this.imgSelectEvent.emit(ev.target);
+  @Output()
+  public submitHandler = new EventEmitter();
+
+  selectImage(ev, img: ImgData) {
+    this.imgSelectEvent.emit({
+      ...img,
+      obj: ev.target
+    })
   }
 
-  setImg(url, dataUrl){
-    const index = this.imgs.indexOf(url);
-    this.imgs[index] = dataUrl;
+  submit(ev) {
+    this.submitHandler.emit(ev)
   }
 
-  submit(){
-    console.log(this.imgs);
+  getImageUrl(img: ImgData) {
+    return img.dataUrl ? img.dataUrl : img.url;
+  }
+
+  get imgs() {
+    return [...this.imgMap.values()]
   }
 
 }

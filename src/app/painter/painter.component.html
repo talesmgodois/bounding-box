@@ -1,12 +1,14 @@
 <main style="display: flex">
     <div style="flex:1">
         <section>
-            <app-toolbar  redoDisabled="{{store.redoHistory.length === 0}}"
+            <app-toolbar #toolbar
+                         redoDisabled="{{store.redoHistory.length === 0}}"
                          undoDisabled="{{store.undoHistory.length === 0}}"
+                         [currentColor]="state.color"
                          (undoEvent)="undo()"
                          (redoEvent)="redo()"
                          (colorHandler)="setColor($event)"
-                        >
+            >
 
             </app-toolbar>
 
@@ -19,7 +21,8 @@
         </section>
     </div>
     <aside style="width: 338px">
-        <app-img-picker #imgPicker [imgs]="imgs" (imgSelectEvent)="setImg($event)"></app-img-picker>
+        <app-img-picker #imgPicker [imgMap]="imgMap" (submitHandler)="getFormData()"
+                        (imgSelectEvent)="setImg($event)"></app-img-picker>
     </aside>
 
 </main>

@@ -1,7 +1,7 @@
-import {Component, Output, EventEmitter, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 export enum EToolbarEvents {
-  REDO='REDO', UNDO="UNDO"
+  REDO = 'REDO', UNDO = "UNDO"
 }
 
 
@@ -24,12 +24,17 @@ export class ToolbarComponent {
   @Output()
   colorHandler = new EventEmitter();
 
+
   public colors = [
-      'red',
-      'green',
-      'blue',
-      'black'
+    'red',
+    'green',
+    'blue',
+    'black'
   ];
+
+
+  @Input()
+  public currentColor: string = this.colors[0];
 
   public undo() {
     this.undoEvent.emit(EToolbarEvents.UNDO)
@@ -39,7 +44,12 @@ export class ToolbarComponent {
     this.redoEvent.emit(EToolbarEvents.REDO)
   }
 
+  getBorder(color) {
+    return this.currentColor === color ? 'groove' : '';
+  }
+
   public setColor(color) {
+    this.currentColor = color;
     this.colorHandler.emit(color)
   }
 }

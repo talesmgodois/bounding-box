@@ -13,6 +13,9 @@
         "target": "https://imaging.nikon.com",
         "secure": true,
         "logLevel": "debug",
-        "changeOrigin": true
+        "changeOrigin": true,
+        "pathRewrite": {
+            "^/lineup": "lineup"
+        }
     }
 }

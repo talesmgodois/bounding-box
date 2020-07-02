@@ -6,17 +6,20 @@
   .item {
     margin: 5px;
   }
-   #color-picker {
-     display: flex;
-     align-items: center;
-     height: 40px;
-     margin: 5px;
-     .color-option {
-       width: 25px;
-       height: 25px;
-       display: block;
-     }
-   }
+
+  #color-picker {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    margin: 5px;
+
+    .color-option {
+      cursor: pointer;
+      width: 25px;
+      height: 25px;
+      display: block;
+    }
+  }
 }
 
 
