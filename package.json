@@ -29,7 +29,7 @@
     "@angular/router": "~10.0.0",
     "@nguniversal/express-engine": "^10.0.0",
     "atob": "^2.1.2",
-    "express": "^4.15.2",
+    "express": "^4.17.3",
     "got": "^11.3.0",
     "p5": "^1.0.0",
     "rxjs": "~6.5.5",
